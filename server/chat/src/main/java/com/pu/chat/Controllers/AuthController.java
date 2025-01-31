@@ -6,11 +6,13 @@ import com.pu.chat.Models.RegisterRequest;
 import com.pu.chat.Services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
 
     private final UserService userService;
@@ -19,7 +21,7 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public ResponseEntity login(@RequestBody LoginRequest request) {
         var user =  userService.getAuthUser(request.getEmail(), request.getPassword());
 

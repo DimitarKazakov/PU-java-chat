@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ChannelController {
     private final ChannelService channelService;
     private final UserService userService;
@@ -36,6 +37,10 @@ public class ChannelController {
 
             var userForChannel = this.channelService.getAllUserByChannel(currentUserChannel.getChannel());
             var currentChannel = currentUserChannel.getChannel();
+
+            if (currentChannel.getDeleted()) {
+                continue;
+            }
 
             var channelUserDtos = new ArrayList<UserChannelDto>();
             for (int j = 0; j < userForChannel.size(); j++) {
@@ -103,7 +108,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user is not part of this channel");
         }
 
-        if (userChannel.getRole().equals("GUEST")) {
+        if (userChannel.getRole().equals(Roles.GUEST)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("only owners and admins can change channel name");
         }
 
@@ -129,7 +134,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user is not part of this channel");
         }
 
-        if (userChannel.getRole().equals("GUEST")) {
+        if (userChannel.getRole().equals(Roles.GUEST)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("only owners and admins can change roles in channels");
         }
 
@@ -165,7 +170,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user is not part of this channel");
         }
 
-        if (!userChannel.getRole().equals("OWNER")) {
+        if (!userChannel.getRole().equals(Roles.OWNER)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("only owners can change roles in channels");
         }
 
@@ -201,7 +206,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user is not part of this channel");
         }
 
-        if (!userChannel.getRole().equals("OWNER")) {
+        if (!userChannel.getRole().equals(Roles.OWNER)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("only owners can change roles in channels");
         }
 
@@ -215,7 +220,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user to edit is not part of this channel");
         }
 
-        if (!request.getRole().equals("ADMIN") && !request.getRole().equals("GUEST")) {
+        if (!request.getRole().equals(Roles.ADMIN) && !request.getRole().equals(Roles.GUEST)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("only ADMIN and GUEST roles are allowed");
         }
 
@@ -241,7 +246,7 @@ public class ChannelController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("user is not part of this channel");
         }
 
-        if (!userChannel.getRole().equals("OWNER")) {
+        if (!userChannel.getRole().equals(Roles.OWNER)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("only owners can delete channels");
         }
 

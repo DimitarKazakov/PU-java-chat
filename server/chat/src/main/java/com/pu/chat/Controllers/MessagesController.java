@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class MessagesController {
     private final MessagesService messagesService;
     private final UserService userService;

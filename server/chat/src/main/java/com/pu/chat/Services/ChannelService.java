@@ -4,6 +4,7 @@ import com.pu.chat.Entity.Channel;
 import com.pu.chat.Entity.Friend;
 import com.pu.chat.Entity.User;
 import com.pu.chat.Entity.UserChannel;
+import com.pu.chat.Models.Roles;
 import com.pu.chat.Repositories.ChannelRepository;
 import com.pu.chat.Repositories.FriendsRepository;
 import com.pu.chat.Repositories.UserChannelRepository;
@@ -60,7 +61,7 @@ public class ChannelService {
         var userChannel = new UserChannel();
         userChannel.setChannel(channel);
         userChannel.setUser(user);
-        userChannel.setRole("GUEST");
+        userChannel.setRole(Roles.GUEST);
         this.userChannelRepository.save(userChannel);
         return userChannel;
     }
@@ -79,7 +80,7 @@ public class ChannelService {
         var newUserChannel = new UserChannel();
         newUserChannel.setChannel(channel);
         newUserChannel.setUser(user);
-        newUserChannel.setRole("OWNER");
+        newUserChannel.setRole(Roles.OWNER);
 
         this.userChannelRepository.save(newUserChannel);
 

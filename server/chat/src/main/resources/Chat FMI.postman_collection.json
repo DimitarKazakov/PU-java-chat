@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "e00b4e1b-af37-4165-8153-ae3df97459e3",
+		"name": "Chat FMI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19786634"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200422@gmail.com\",\n    \"password\": \"root123@2\",\n    \"username\": \"mkazakov2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users?email=mkazakov200420@gmail.com&password=root123@",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "mkazakov200420@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "root123@"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Channels",
+			"item": [
+				{
+					"name": "Get all channels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/channels?email=mkazakov200420@gmail.com&password=root123@",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "mkazakov200420@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "root123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"name\": \"Test Channel 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit channel name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"name\": \"Test Channel Edit 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels/name/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels",
+								"name",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"username\": \"mkazakov1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels/member/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels",
+								"member",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove user from channel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"username\": \"mkazakov1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels/member/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels",
+								"member",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit user role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"username\": \"mkazakov1\",\n    \"role\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels/member/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels",
+								"member",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete channel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/channels/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"channels",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Get all channel messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/messages/channels/2?email=mkazakov200420@gmail.com&password=root123@",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"messages",
+								"channels",
+								"2"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "mkazakov200420@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "root123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all friends messages Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/messages/friends/mkazakov1?email=mkazakov200420@gmail.com&password=root123@",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"messages",
+								"friends",
+								"mkazakov1"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "mkazakov200420@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "root123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add message to channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"message\": \"Test Message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/messages/channels/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"messages",
+								"channels",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add message to friends",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"message\": \"Test Message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/messages/friends/mkazakov1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"messages",
+								"friends",
+								"mkazakov1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Friends",
+			"item": [
+				{
+					"name": "Get all friends",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/friends?email=mkazakov200420@gmail.com&password=root123@",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"friends"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "mkazakov200420@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "root123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new friend",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mkazakov200420@gmail.com\",\n    \"password\": \"root123@\",\n    \"friendUsername\": \"mkazakov1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/friends",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"friends"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
