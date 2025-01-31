@@ -41,6 +41,8 @@ const initialValue: GlobalContextType = {
   cleanup: () => {},
 };
 
+export const SESSION_KEY = "AUTH";
+
 const GlobalContext = createContext(initialValue);
 
 export const GlobalProvider = (props: GlobalProviderProps) => {
@@ -54,13 +56,26 @@ export const GlobalProvider = (props: GlobalProviderProps) => {
   useEffect(() => {
     if (!loggedInUser && router.pathname === "/chat") {
       router.push("/login");
-    } else if (loggedInUser) {
+    } else if (
+      loggedInUser &&
+      (router.pathname === "/login" || router.pathname === "/register")
+    ) {
       router.push("/chat");
     }
   }, [loggedInUser, router]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const auth = sessionStorage.getItem(SESSION_KEY);
+      if (auth) {
+        setLoggedInUser(JSON.parse(auth));
+      }
+    }
+  }, []);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const cleanup = () => {
+    sessionStorage.removeItem(SESSION_KEY);
     setLoggedInUser(undefined);
     setSelectedChat(undefined);
     queryClient.removeQueries();
